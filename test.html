@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&#198;3's Personal Webpage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111; /* Matte black background */
+            color: #ddd; /* Light gray text */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin: 0;
+            padding: 0;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        header {
+            background-color: #008080; /* Light teal header */
+            color: #fff; /* White text */
+            text-align: center;
+            padding: 1rem;
+            border-top-left-radius: inherit; /* Inherit from body */
+            border-top-right-radius: inherit; /* Inherit from body */
+        }
+
+        header h1,
+        header h2 {
+            color: #fff; /* White text */
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #222; /* Dark matte black */
+            padding: 20px;
+            border-radius: inherit; /* Inherit from body */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #333; /* Dark background for sections */
+            border-radius: 12px;
+        }
+
+        h2 {
+            color: #fff; /* White headers */
+            font-weight: 700; /* Bold font weight */
+            font-size: 1.5rem; /* Larger font size */
+            margin-top: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #222; /* Dark matte black footer */
+            color: #ddd; /* Light gray text */
+            border-bottom-left-radius: inherit; /* Inherit from body */
+            border-bottom-right-radius: inherit; /* Inherit from body */
+            margin-top: 20px;
+        }
+
+        a {
+            color: #66c2b3; /* Light teal links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Toggle switch styles */
+        .toggle-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000; /* Ensure it's above other content */
+        }
+
+        .toggle-label {
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .toggle-input {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #fff;
+            border-radius: 34px;
+            transition: background-color 0.3s ease;
+            overflow: hidden; /* Ensure child elements don't overflow */
+            box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Adding a subtle shadow */
+        }
+
+        .toggle-slider:before {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 7px;
+            width: 20px;
+            height: 20px;
+            background-color: #000;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-input:checked + .toggle-slider:before {
+            transform: translateX(26px); /* Move slider to the right */
+        }
+
+        /* Day mode styles */
+        .day {
+            background-color: #f5f5f5; /* Light background */
+            color: #333; /* Dark text */
+        }
+
+        .day header {
+            background-color: #66c2b3; /* Light teal header */
+            color: #222; /* Dark text */
+        }
+
+        .day header h1,
+        .day header h2 {
+            color: #222; /* Dark text */
+        }
+
+        .day main {
+            background-color: #f0f0f0; /* Lighter background */
+            color: #333; /* Dark text */
+        }
+
+        .day section {
+            background-color: #ddd; /* Lighter background for sections */
+            color: #333; /* Dark text */
+        }
+
+        .day footer {
+            background-color: #f0f0f0; /* Lighter background for footer */
+            color: #333; /* Dark text */
+        }
+
+        .day a {
+            color: #008080; /* Dark teal links */
+        }
+
+        /* Night mode styles */
+        .night {
+            background-color: #111; /* Dark matte black background */
+            color: #ddd; /* Light gray text */
+        }
+
+        .night header {
+            background-color: #008080; /* Light teal header */
+            color: #fff; /* White text */
+        }
+
+        .night main {
+            background-color: #222; /* Darker matte black background */
+            color: #ddd; /* Light gray text */
+        }
+
+        .night section {
+            background-color: #333; /* Darker background for sections */
+            color: #ddd; /* Light gray text */
+        }
+
+        .night footer {
+            background-color: #222; /* Darker matte black background for footer */
+            color: #ddd; /* Light gray text */
+        }
+
+        .night a {
+            color: #66c2b3; /* Light teal links */
+        }
+
+        /* Toggle switch icon styles */
+        .toggle-icon {
+            position: absolute;
+            top: 5px;
+            font-size: 18px; /* Adjusted font size */
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon-day {
+            left: 8px;
+            color: #ffd700; /* Gold color */
+        }
+
+        .toggle-icon-night {
+            right: 8px;
+            color: #778899; /* Light slate gray color */
+        }
+
+        .toggle-input:checked + .toggle-slider .toggle-icon-day {
+            transform: translateX(28px); /* Move day icon to the right */
+        }
+
+        .toggle-input:checked + .toggle-slider .toggle-icon-night {
+            transform: translateX(-28px); /* Move night icon to the left */
+        }
+    </style>
+</head>
+<body class="night"> <!-- Default to night mode -->
+    <header>
+        <h1>Welcome to &#198;3's Personal Webpage</h1>
+    </header>
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hello! I am &#198;3. Welcome to my personal webpage where you can learn more about my projects and get in touch with me. Feel free to explore!</p>
+        </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            <p>Here you will find a showcase of some of my projects:</p>
+            <ul>
+                <li><strong>Project 1:</strong> A brief description of your project.</li>
+                <li><strong>Project 2:</strong> A brief description of your project.</li>
+                <li><strong>Project 3:</strong> A brief description of your project.</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>Contact me at <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+    </footer>
+
+    <!-- Toggle switch for day/night mode -->
+    <div class="toggle-container">
+        <label class="toggle-label" for="toggle-input">
+            <input type="checkbox" id="toggle-input" class="toggle-input" />
+            <div class="toggle-slider">
+                <i class="fas fa-sun toggle-icon toggle-icon-day"></i>
+                <i class="fas fa-moon toggle-icon toggle-icon-night"></i>
+            </div>
+        </label>
+    </div>
+
+    <script>
+        const toggleInput = document.getElementById('toggle-input');
+        const body = document.body;
+
+        toggleInput.addEventListener('change', function() {
+            if (this.checked) {
+                body.classList.remove('night');
+                body.classList.add('day');
+            } else {
+                body.classList.remove('day');
+                body.classList.add('night');
+            }
+        });
+    </script>
+</body>
+</html>
